@@ -20,8 +20,7 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     * Program to print reciprocal of letters.
 */
 void solve() {
-    string S = "";
-    getline(cin, S);
+    string S = "a";
     for (int i = 0; i < S.length(); i++) {
         if (isupper(S[i])) S[i] = 155 - S[i];
         if (islower(S[i])) S[i] = 219 - S[i];
