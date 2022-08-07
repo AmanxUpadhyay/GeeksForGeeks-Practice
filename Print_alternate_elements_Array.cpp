@@ -17,30 +17,13 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * You are given an array A of size N. You need to print elements of A in alternate order (starting from index 0).
 */
 void solve() {
     int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
+    int arr[n] = { 1, 2, 3, 4, 5, 6 };
 
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
-        }
-    }
-
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    for (int i = 0; i < n; i += 2) cout << arr[i] << " ";
 }
 
 int32_t main() {

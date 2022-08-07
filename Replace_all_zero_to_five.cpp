@@ -17,30 +17,16 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * Given a number N. The task is to complete the function convertFive() which replace all zeros in the number with 5 and returns the number.
 */
 void solve() {
     int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
-        }
+    string s = to_string(n);
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == '0') s[i] = '5';
     }
-
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    n = stoi(s);
+    cout << n << endl;
 }
 
 int32_t main() {

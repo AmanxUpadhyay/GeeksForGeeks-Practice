@@ -17,30 +17,38 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * Given three integers N, M, and K and a matrix Mat of dimensions NxM. Left rotate the matrix K times.
 */
 void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
+    int arr[] = { 1,2,3,4 };
+    int N, M, K; cin >> N >> M >> K;
+    vector<vector<int>> Mat(N, vector<int>(M));
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cin >> Mat[i][j];
         }
     }
 
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    K = K % M;
+    for (int i = 0; i < N; i++) {
+        reverse(Mat[i].begin(), Mat[i].begin() + K);
+        reverse(Mat[i].begin() + K, Mat[i].begin() + M);
+        reverse(Mat[i].begin(), Mat[i].end());
+    }
+
+/*
+    for (int i = 0; i < N; i++) {
+        rotate(Mat[i].begin(), Mat[i].begin() + K, Mat[i].end());
+    }
+*/
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cout << Mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
 }
 
 int32_t main() {

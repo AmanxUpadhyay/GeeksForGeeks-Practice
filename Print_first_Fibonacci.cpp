@@ -17,30 +17,16 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * Given a number N, find the first N Fibonacci numbers. The first two number of the series are 1 and 1.
 */
 void solve() {
     int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
 
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
-        }
-    }
+    vector<long long> arr(n);
+    arr[0] = 1; arr[1] = 1;
+    for (int i = 2; i < n; i++) arr[i] = arr[i - 1] + arr[i - 2];
 
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
 
 int32_t main() {

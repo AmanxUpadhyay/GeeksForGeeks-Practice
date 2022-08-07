@@ -17,30 +17,21 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * In the given range [L, R], print all numbers having unique digits. e.g. In range 10 to 20 should print all numbers except 11. The number 11 has two 1 therefore 11 is not a unique number.
 */
 void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
+    int L, R; cin >> L >> R;
 
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
+    vector<int> numbers;
+    for (int i = L; i <= R; i++) {
+        string s = to_string(i);
+        set<int> s_set(s.begin(), s.end());
+        if (s_set.size() == s.size()) {
+            numbers.push_back(i);
         }
     }
 
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    for (auto i : numbers) cout << i << " ";
 }
 
 int32_t main() {

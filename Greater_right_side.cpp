@@ -17,30 +17,19 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * You are given an array Arr of size N. Replace every element with the next greatest element (greatest element on its right side) in the array. Also, since there is no element next to the last element, replace it with -1.
 */
 void solve() {
     int n; cin >> n;
-    int arr[n];
+    vector<int> arr(n);
     for (int i = 0; i < n; i++) cin >> arr[i];
 
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
-        }
+    int max_val = -1, Temp;
+    for (int i = n - 1; i >= 0; i--) {
+        Temp = arr[i];
+        arr[i] = max_val;
+        max_val = max(max_val, Temp);
     }
-
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
 }
 
 int32_t main() {

@@ -17,30 +17,30 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given an array Arr of size N, print second largest element from an array.
+    * Given an array nums of positive integers of size N. Find all distinct digits present in nums.
 */
 void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
+    int N; cin >> N;
+    vector<int> nums(N);
+    for (int i = 0; i < N; i++) cin >> nums[i];
 
-    int first = 0, second = -1;
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[first]) {
-            second = first;
-            first = i;
-        }
-        else if (arr[i] < arr[first]) {
-            if (second == -1 || arr[second] < arr[i]) {
-                second = i;
-            }
+    map <int, int> m;
+    for (int i = 0; i < N; i++) {
+        int x = nums[i];
+        while (x) {
+            m[x % 10]++;
+            x /= 10;
         }
     }
 
-    if (second == -1)
-        cout << -1;
-    else
-        cout << arr[second];
+    vector<int> ans;
+    for (auto it = m.begin(); it != m.end(); it++) {
+        ans.push_back(it->first);
+    }
+
+    for (int i = 0; i < ans.size(); i++) {
+        cout << ans[i] << " ";
+    }
 }
 
 int32_t main() {
