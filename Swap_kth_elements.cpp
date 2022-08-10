@@ -17,22 +17,18 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given an array Arr of size N, swap the Kth element from beginning with Kth element from end.
 */
 void solve() {
-    int n; cin >> n;
+    int n, k; cin >> n >> k;
     int arr[n];
     for (int i = 0; i < n; i++) cin >> arr[i];
 
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
-    }
+    int kth = arr[k - 1];
+    int nth = arr[n - k];
+    arr[k - 1] = nth; arr[n - k] = kth;
 
-    for (auto i : ans) cout << i << " ";
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
 
 int32_t main() {

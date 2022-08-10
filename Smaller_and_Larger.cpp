@@ -17,22 +17,38 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given a sorted array Arr of size N and a value X, find the number of array elements less than or equal to X and elements more than or equal to X.
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+vector<int> getMoreAndLess(int arr[], int n, int x) {
+    int more = 0, less = 0;
+    for(int i = 0; i < n; i++) {
+        if (arr[i] < x) {
+            less++;
+        }
+        else if (arr[i] > x) {
+            more++;
+        }
+        else if(arr[i] == x) {
+            less++;
+            more++;
+        }
     }
+    return {less, more};
+}
 
-    for (auto i : ans) cout << i << " ";
+void solve() {
+    int n;
+    cin >> n;
+    int key;
+    cin >> key;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    vector<int> ans = getMoreAndLess(arr, n, key);
+    for (int i = 0; i < ans.size(); i++) {
+        cout << ans[i] << " ";
+    }
 }
 
 int32_t main() {

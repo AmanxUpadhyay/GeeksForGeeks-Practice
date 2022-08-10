@@ -17,22 +17,27 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given an array A of size n of integers in the range from 1 to n, we need to find the inverse permutation of that array.
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+vector<int> inversePermutation(vector<int> arr) {
+    vector<int> inv(arr.size());
+    for (int i = 0; i < arr.size(); i++) {
+        inv[arr[i] - 1] = i + 1;
     }
+    return inv;
+}
 
-    for (auto i : ans) cout << i << " ";
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    vector<int> inv = inversePermutation(arr);
+    for (int i = 0; i < n; i++) {
+        cout << inv[i] << " ";
+    }
 }
 
 int32_t main() {

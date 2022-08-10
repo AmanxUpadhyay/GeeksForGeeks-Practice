@@ -17,22 +17,13 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given a list of names, display the longest name.
 */
 void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
-    }
-
-    for (auto i : ans) cout << i << " ";
+    int n; cin >> n; string names[n];
+    for (int i = 0; i < n; i++) cin >> names[i];
+    sort(names, names + n, [](const string& a, const string& b) { return a.size() > b.size(); });
+    cout << names[0] << endl;
 }
 
 int32_t main() {

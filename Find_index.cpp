@@ -17,22 +17,43 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given an unsorted array Arr[] of N integers and a Key which is present in this array. You need to write a program to find the start index( index where the element is first found from left in the array ) and end index( index where the element is first found from right in the array ).
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+vector<int> find_index(int arr[], int n, int key) {
+    vector<int> ans;
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == key) {
+            ans.push_back(i);
+            break;
+        }
+    }
+    for(int i = n - 1; i >= 0; i--) {
+        if(arr[i] == key) {
+            ans.push_back(i);
+            break;
+        }
     }
 
-    for (auto i : ans) cout << i << " ";
+    if (ans.size()) {
+        return ans;
+    } else {
+        return {-1, -1};
+    }
+}
+
+void solve() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    int key;
+    cin >> key;
+    vector<int> ans = find_index(arr, n, key);
+    for (int i = 0; i < ans.size(); i++) {
+        cout << ans[i] << " ";
+    }
 }
 
 int32_t main() {

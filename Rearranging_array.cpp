@@ -17,22 +17,29 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given a list of integers, rearrange the list such that it consists of alternating minimum-maximum elements using only list operations. The first element of the list should be the minimum of all elements and the second element should be a maximum of all elements present in the list. Similarly, the third element will be the next minimum element and the fourth element is the next maximum element, and so on. Use of extra space is not permitted. Store the answer in the answer[] array. You don't need to print that.
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
+void Rearrange(int arr[], int n, int answer[]) {
+    sort(arr, arr + n);
+    int k = 0;
     for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+        answer[k++] = arr[i];
+        answer[k++] = arr[n - 1 - i];
     }
+}
 
-    for (auto i : ans) cout << i << " ";
+void solve() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    int answer[n];
+    Rearrange(arr, n, answer);
+    for (int i = 0; i < n; i++) {
+        cout << answer[i] << " ";
+    }
 }
 
 int32_t main() {

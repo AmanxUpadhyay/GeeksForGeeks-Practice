@@ -17,22 +17,33 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given an array of size N and you have to tell whether the array is perfect or not. An array is said to be perfect if it's reverse array matches the original array. If the array is perfect then print "PERFECT" else print "NOT PERFECT".
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
+bool IsPerfect(int arr[], int n) {
+    int Arr[n];
     for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+        Arr[i] = arr[n - 1 - i];
     }
+    for (int i = 0; i < n; i++) {
+        if (arr[i] != Arr[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-    for (auto i : ans) cout << i << " ";
+void solve() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    if (IsPerfect(arr, n)) {
+        cout << "PERFECT" << endl;
+    } else {
+        cout << "NOT PERFECT" << endl;
+    }
 }
 
 int32_t main() {

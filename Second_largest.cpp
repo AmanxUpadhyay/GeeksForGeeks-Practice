@@ -40,7 +40,7 @@ void solve() {
     if (second == -1)
         cout << -1;
     else
-        cout << arr[second];
+        cout << arr[second] << " ";
 }
 
 int32_t main() {

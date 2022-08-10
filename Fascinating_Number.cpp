@@ -17,22 +17,32 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 }
 
 /*
-    * Given a stream of incoming numbers, find average or mean of the stream at every point.
+   * Given a number N. Your task is to check whether it is fascinating or not. Fascinating Number: When a number(should contain 3 digits or more) is multiplied by 2 and 3 ,and when both these products are concatenated with the original number, then it results in all digits from 1 to 9 present exactly once.
 */
-void solve() {
-    int n; cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    vector<float>ans;
-    float sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += arr[i];
-        float mean = sum / (i + 1);
-        ans.push_back(mean);
+bool fascinating(int n) {
+    string str = to_string(n);
+    int len = str.length();
+    if (len < 3) {
+        return false;
     }
+    string res = to_string(n * 2) + to_string(n * 3) + str;
+    sort(res.begin(), res.end());
+    if(res == "123456789") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-    for (auto i : ans) cout << i << " ";
+void solve() {
+    int n;
+    cin >> n;
+    if (fascinating(n)) {
+        cout << "Fascinating";
+    }
+    else {
+        cout << "Not Fascinating";
+    }
 }
 
 int32_t main() {
