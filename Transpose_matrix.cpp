@@ -16,25 +16,33 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     cout.write(names, comma - names) << " : " << arg1 << " | "; __f(comma + 1, args...);
 }
 
+/*
+   * Write a program to find the transpose of a square matrix of size N*N. Transpose of a matrix is obtained by changing rows to columns and columns to rows.
+*/
+void transpose(vector<vector<int>>& matrix, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+}
+
 void solve() {
     int n;
     cin >> n;
-    int a[n];
+    vector<vector<int>> matrix(n, vector<int>(n));
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int cur = sum - a[i];
-        if (cur == a[i]) {
-            ans++;
+        for (int j = 0; j < n; j++) {
+            cin >> matrix[i][j];
         }
     }
-    cout << ans << endl;
+    transpose(matrix, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
 
 int32_t main() {

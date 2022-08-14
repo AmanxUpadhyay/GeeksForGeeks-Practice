@@ -16,25 +16,20 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     cout.write(names, comma - names) << " : " << arg1 << " | "; __f(comma + 1, args...);
 }
 
+/*
+   * Given two strings a and b consisting of lowercase characters. The task is to check whether two given strings are an anagram of each other or not. An anagram of a string is another string that contains the same characters, only the order of characters can be different. For example, act and tac are an anagram of each other.
+*/
+bool isAnagram(string a, string b) {
+    if (a.size() != b.size()) return false;
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    return a == b;
+}
+
 void solve() {
-    int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int cur = sum - a[i];
-        if (cur == a[i]) {
-            ans++;
-        }
-    }
-    cout << ans << endl;
+    string a, b;
+    cin >> a >> b;
+    cout << (isAnagram(a, b) ? "YES" : "NO") << endl;
 }
 
 int32_t main() {

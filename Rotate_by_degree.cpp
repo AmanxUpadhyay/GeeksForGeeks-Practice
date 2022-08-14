@@ -16,25 +16,36 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     cout.write(names, comma - names) << " : " << arg1 << " | "; __f(comma + 1, args...);
 }
 
+/*
+   * Given a square matrix of size N x N. The task is to rotate it by 90 degrees in anti-clockwise direction without using any extra space.
+*/
+void rotateBy90(vector<vector<int>>& matrix, int n) {
+    int m = matrix[0].size();
+    for (int i = 0; i < n; i++) reverse(matrix[i].begin(), matrix[i].end());
+
+    for (int i = 0; i < n; i++) {
+        for(int j = i; j < m; j++) {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+}
+
 void solve() {
     int n;
     cin >> n;
-    int a[n];
+    vector<vector<int>> matrix(n, vector<int>(n));
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int cur = sum - a[i];
-        if (cur == a[i]) {
-            ans++;
+        for (int j = 0; j < n; j++) {
+            cin >> matrix[i][j];
         }
     }
-    cout << ans << endl;
+    rotateBy90(matrix, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
 
 int32_t main() {

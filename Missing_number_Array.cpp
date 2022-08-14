@@ -16,25 +16,25 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     cout.write(names, comma - names) << " : " << arg1 << " | "; __f(comma + 1, args...);
 }
 
+/*
+   * Given an array of size N-1 such that it only contains distinct integers in the range of 1 to N. Find the missing element.
+*/
+int MissingNumber(vector<int>& arr, int n) {
+    int sum = (n * (n + 1)) / 2;
+    for (int i = 0; i < n; i++) {
+        sum -= arr[i];
+    }
+    return sum;
+}
+
 void solve() {
     int n;
     cin >> n;
-    int a[n];
+    vector<int> arr(n);
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        cin >> arr[i];
     }
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int cur = sum - a[i];
-        if (cur == a[i]) {
-            ans++;
-        }
-    }
-    cout << ans << endl;
+    cout << MissingNumber(arr, n) << endl;
 }
 
 int32_t main() {
