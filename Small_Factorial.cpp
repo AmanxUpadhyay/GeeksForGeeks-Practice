@@ -22,7 +22,11 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 void solve() {
     int N; cin >> N;
 
-    if (N == 0) cout << 1;
+    int ans = 1;
+    for (int i = 1; i <= N; i++) {
+        ans *= i;
+    }
+    cout << ans << endl;
 }
 
 int32_t main() {

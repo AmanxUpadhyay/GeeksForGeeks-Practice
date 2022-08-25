@@ -23,6 +23,32 @@ void solve() {
     int n; cin >> n;
     int arr[n];
     for (int i = 0; i < n; i++) cin >> arr[i];
+    int ans = 0;
+    while (n > 1) {
+        int max = INT_MIN;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > max) max = arr[i];
+        }
+        ans += max;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == max) {
+                arr[i] = INT_MIN;
+                break;
+            }
+        }
+        max = INT_MIN;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > max) max = arr[i];
+        }
+        ans += max;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == max) {
+                arr[i] = INT_MIN;
+                break;
+            }
+        }
+        n--;
+    }
 }
 
 int32_t main() {

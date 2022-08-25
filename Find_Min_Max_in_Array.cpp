@@ -16,25 +16,21 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
     cout.write(names, comma - names) << " : " << arg1 << " | "; __f(comma + 1, args...);
 }
 
+/*
+   * Given an array A of size N of integers. Your task is to find the minimum and maximum elements in the array.
+*/
+pair<long long, long long> minMax(long long a[], int n) {
+    return { *min_element(a, a + n), *max_element(a, a + n) };
+}
+
 void solve() {
     int n;
     cin >> n;
-    int a[n];
+    long long a[n];
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
-    }
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int cur = sum - a[i];
-        if (cur == a[i]) {
-            ans++;
-        }
-    }
-    cout << ans << endl;
+    pair<long long, long long> ans = minMax(a, n);
 }
 
 int32_t main() {
